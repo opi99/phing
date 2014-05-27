@@ -203,9 +203,8 @@ class PHPCPDTask extends Task
             if (class_exists('\\SebastianBergmann\\PHPCPD\\Detector\\Detector')) {
                 return 'composer-direct';
             }
-        }
-        // Composer version in include path
-        if ($handler = @fopen('SebastianBergmann/PHPCPD/autoload.php', 'r', true)) {
+        } elseif ($handler = @fopen('SebastianBergmann/PHPCPD/autoload.php', 'r', true)) {
+            // Composer version in include path
             fclose($handler);
             @include_once('SebastianBergmann/PHPCPD/autoload.php');
 
